@@ -41,3 +41,6 @@ Route::prefix("admin")->namespace("Admin")->group(function(){
     Route::resource("bookings",'BookingController');
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
