@@ -1,0 +1,12 @@
+@extends("website.layout")
+@section("content")
+@include("website.site.header")
+@include("website.site.service")
+@include("website.site.visions")
+@include("website.site.rooms")
+@include("website.site.feedback")
+@include("website.site.video")
+@include("website.site.restaurant")
+@include("website.site.blog")
+@include("website.site.instagram")
+@endsection
