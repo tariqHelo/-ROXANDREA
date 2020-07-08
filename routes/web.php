@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('website.pages.index');
+    return view('website.index');
 });
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -36,8 +39,7 @@ Route::prefix("admin")->namespace("Admin")->group(function(){
     Route::get("/rooms/{id}/edit","RoomController@edit");
 
 
-    Route::get("admin/settings",'SettingController@store')->name('post-settings');
-
+    Route::get("settings",'SettingController@update')->name('post-settings');
     Route::post("admin/settings",'SettingController@setting')->name('settings');
 
 

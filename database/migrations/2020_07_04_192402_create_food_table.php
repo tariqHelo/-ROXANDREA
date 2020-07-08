@@ -19,7 +19,7 @@ class CreateFoodTable extends Migration
             $table->text('details');
             $table->integer('price');
             $table->string('image');
-       //     $table->integer('category_id');
+            $table->integer('category_id');
             $table->boolean('published')->default(0);
             $table->timestamps();
         });

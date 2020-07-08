@@ -5,12 +5,11 @@
 @section("content")
 
 <form class="row mb-3">
-
     <div class="col-sm-4">
-        <input autofocus value="{{ request()->get('q') }}" type="text" class="form-control" 
+        <input autofocus value="{{ request()->get("q") }}" type="text" class="form-control"
                     placeholder="Enter Your Search" name="q"  />
     </div>
-    
+
     <div class="col-sm-2">
         <select name="published" class="form-control">
         <option value='' > Anystatus</option>
@@ -27,7 +26,7 @@
 
 <div class="table-scrollable">
 
-@if($rooms->count()>0) 
+@if($rooms->count()>0)
 
     <table align="center" class="table table-striped mt-3 table-bordered table-hover">
         <thead>
@@ -46,19 +45,19 @@
         <tr>
             <td>{{ $room->id}}</td>
             <td><img width="100" src='{{ asset("storage/".$room->image)}}' ></td>
-                
+
             <td><a href="{{ route("rooms.show", $room->id) }}">{{ $room->title }}</a></td>
-            
+
             <td>{{$room->price}}</td>
-        
+
             <td><input type="checkbox" disabled {{$room->published?"checked":"" }}/></td>
-        
+
             <td width="20%">
                 <form method="post" action="{{ route('rooms.destroy', $room->id) }}">
 
                     <a href="{{ route("rooms.edit", $room->id) }}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
                     <a href="{{ route("delete-rooms", $room->id) }}" onclick='return confirm("Are you sure delete?")' class="btn btn-warning btn-sm"><i class='fa fa-trash'></i></a>
-        
+
                     @csrf
                     @method("DELETE")
 

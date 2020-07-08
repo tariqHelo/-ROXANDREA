@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Requests\SettingsRequest;
-use App\Models\Setting;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class SettingController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,8 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $settings = Setting::first();
-        return view('admin.settings.settings')->with('settings', $settings);
+    {
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -36,9 +33,9 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( $request)
-    {  
-    
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -70,18 +67,9 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SettingsRequest $request)
+    public function update(Request $request, $id)
     {
-        $settings = Setting::get();
-        if ($settings){
-            $settings->update($request->all());
-            session()->flash('msg' , 's: settings updated successfully');
-            return redirect(route('settings'));
-        } else{
-            Setting::create($request->all());
-            session()->flash('msg' , 's: settings created successfully');
-            return redirect(route('settings'));
-        }
+        //
     }
 
     /**

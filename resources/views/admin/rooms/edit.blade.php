@@ -5,20 +5,20 @@
 @section("content")
     <div class="portlet light ">
         <div class="portlet-body form">
-            <form method="post" enctype="multipart/form-data" action="{{route('rooms.update',$rooms->id)}}">
+            <form method="post" enctype="multipart/form-data" action="{{route('rooms.update',$room->id)}}">
                 @method('PATCH')
                 @csrf
 
                 <div class="form-body">
                     <div class="form-group form-md-line-input has-success">
-                        <input type="text" class="form-control" id="form_control_1" name="title" value="{{$rooms->title}}" placeholder="Enter your Title">
+                        <input type="text" class="form-control" id="form_control_1" name="title" value="{{$room->title}}" placeholder="Enter your Title">
                         <label for="form_control_1">Title</label>
                         <span class="help-block">Typing...</span>
                     </div>
                 </div>
                 <div class="form-body">
                     <div class="form-group form-md-line-input has-success">
-                        <input type="number" class="form-control" id="form_control_1" name="price" value="{{$rooms->price}}" placeholder="Enter your name">
+                        <input type="number" class="form-control" id="form_control_1" name="price" value="{{$room->price}}" placeholder="Enter your name">
                         <label for="form_control_1">Price</label>
                         <span class="help-block">Typing...</span>
                     </div>
@@ -29,12 +29,12 @@
                         <label for="form_control_1">Image</label>
                     </div>
                     <div>
-                        <img src="{{asset("storage/".$rooms->image)}}" width='240' class='img-thumbnail'>
+                        <img src="{{asset("storage/".$room->image)}}" width='240' class='img-thumbnail'>
                     </div>
                 </div>
                 <div class="md-checkbox-inline">
                     <div class="md-checkbox">
-                        <input type="checkbox" id="checkbox6" class="md-check" name="published" value="1" {{ (old('published')?? $rooms->published)?"checked":"" }}>
+                        <input type="checkbox" id="checkbox6" class="md-check" name="published" value="1" {{ (old('published')?? $room->published)?"checked":"" }}>
                         <label for="checkbox6">
                             <span></span>
                             <span class="check"></span>

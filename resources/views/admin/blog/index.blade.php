@@ -3,8 +3,7 @@
 @section("content")
 <div class="portlet light ">
 
-
-       <form class="portlet-body">
+                            <form class="portlet-body">
                                 <div class='row'>
                                     <div class="col-sm-3">
                                         <input name="q" autofocus type="text" placeholder="Enter your search" value='{{ request()->get("q") }}' class="form-control" />
@@ -45,16 +44,19 @@
                                             <tbody>
                                             @foreach($blogs as $blog)
                                                 <tr>
-                                                <td><img width='100' src='{{ asset("storage/".$blog->image) }}' /></td>
+                                                <td><img width='100' src='{{ asset('storage/'.$blog->image) }}' /></td>
                                                 <td>{{ $blog->title }}</td>
                                                 <td>{{ $blog->category->title }}</td>
                                                     <td>
-                                                        <span class="label label-sm label-info"> {{ $blog->published?"Active":"Not Active" }} </span>
-                                                    </td>
+                                                        @if($blog->published)
+                                                            <a href="{{route('blog.pending',$blog->id)}}" style="width: 80px" class="btn btn-success btn-sm" >Active</a>
+                                                        @else
+                                                            <a href="{{route('blog.confirm',$blog->id)}}" style="width: 80px"  class="btn btn-warning btn-sm">Pending</a>
+
+                                                        @endif                                                    </td>
                                                     <td width="20%">
-                     
                     <form method="post" action="{{ route('blogs.destroy', $blog->id) }}">
-            
+
                         <a href="{{ route("blogs.edit", $blog->id) }}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
 
                         <button onclick='return confirm("Are you sure ?")' type="submit" class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></button>
@@ -73,7 +75,7 @@
     <div class='alert alert-warning'>Sorry, there is no results to your search</div>
 @endif
                                 </div>
-   
+
                             </div>
 
 @endsection

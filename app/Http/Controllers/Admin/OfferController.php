@@ -99,8 +99,8 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditRequest $request, $id)
-    {
+    public function update(Request $request, $id)
+    {   
         if(!$request->published){
             $request['published']=0;
         }

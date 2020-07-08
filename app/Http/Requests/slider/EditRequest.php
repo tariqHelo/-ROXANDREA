@@ -23,13 +23,11 @@ class EditRequest extends FormRequest
      */
     public function rules()
     {
-        
         return [
-            'title'=>'required|unique:sliders,title,'.$id.',id',
+            'title'=>'required' ,
             'subtitle'=>'required' ,
-            'imageFile' => 'required|image',//|mimes:jpg|max:100
+            'imageFile' => 'image',//|mimes:jpg|max:100
         ];
-        
     }
     public function messages()
     {

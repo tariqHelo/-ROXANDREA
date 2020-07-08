@@ -18,13 +18,14 @@
                     <label class="form-check-label" for='published'>Published</label>
                   </div>
 
-                  
-           
+
+
                 <!-- /.card-body -->
 
                 <div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <a class='btn btn-danger' href='{{asset("admin/categories")}}'>Cancel</a>
+                </div>
                 </div>
               </form>
 @endsection

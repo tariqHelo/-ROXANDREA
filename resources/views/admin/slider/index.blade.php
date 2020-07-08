@@ -5,6 +5,7 @@
 @section("content")
 
 
+
             <form class='row'>
                 <div class="col-sm-3 ">
                     <input autofocus value="{{ request()->get('q') }}" type="text" class="form-control" placeholder="Enter Your Search" name="q"  />
@@ -75,6 +76,7 @@
 
                 @endif
                 </div>
+
 
 
 @endsection
