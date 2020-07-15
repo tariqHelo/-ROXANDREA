@@ -15,6 +15,12 @@ class Permissions
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+       $retutn = $next($request);
+       
+       $loggedInUser = auth()->user();
+
+       $requestedRouteName = $request()->route()->getName();
+
+       
     }
 }

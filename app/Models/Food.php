@@ -11,7 +11,8 @@ class Food extends Model
         'price',
         'image',
         'details',
-        'published'
+        'published',
+        'category_id'
     ];
     
 }
