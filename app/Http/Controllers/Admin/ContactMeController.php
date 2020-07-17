@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\ContactMe;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ContactMeController extends Controller
 {

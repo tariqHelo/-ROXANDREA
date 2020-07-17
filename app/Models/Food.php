@@ -14,9 +14,8 @@ class Food extends Model
         'published',
         'category_id'
     ];
-
     public function category(){
-        return $this->belongsTo('App\Models\Category');
+        return $this->hasMany('App\Category');
     }
     
 }

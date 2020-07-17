@@ -93,10 +93,7 @@ class CategoryController extends Controller
            session()->flash("msg", "The category was not found");
            return redirect(route("category.index"));
         }
-
         return view("admin.category.edit")->withCategory($category);
-
-
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BookingController extends Controller
 {
@@ -12,9 +13,16 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $q=$request->get("q")??"";
+
+        $bookings=Booking::where("name","like","%$q%")->paginate(10)->appends(["q"=>$q]);
+
+
+        return view("admin.bookings.index")->with("bookings",$bookings);
+
+
     }
 
     /**
@@ -24,7 +32,6 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -46,7 +53,14 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookings = Booking::find($id);
+        $rooms=Room::all();
+        if(!$bookings){
+            Session()->flash("msg", "e: Booking was not found");
+            return redirect(route("bookings.index"));
+        }
+       
+        return view("admin.bookings.show")->withBookings($bookings)->withRooms($rooms);
     }
 
     /**

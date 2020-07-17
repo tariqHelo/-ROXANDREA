@@ -54,8 +54,9 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
     Route::get("/rooms/{id}/edit","RoomController@edit");
 
 
-    Route::get("settings",'SettingController@update')->name('post-settings');
-    Route::post("admin/settings",'SettingController@setting')->name('settings');
+    Route::get("settings",'SettingController@setting')->name('settings');
+    Route::post("settings",'SettingController@postsetting')->name('post-settings');
+
     
     Route::resource("contact_me",'ContactMeController');
 

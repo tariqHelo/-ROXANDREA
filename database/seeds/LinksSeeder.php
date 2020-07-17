@@ -43,8 +43,7 @@ class LinksSeeder extends Seeder
             Link::create(['title'=>'User Links','icon'=>'fa fa-lock','route'=>'permissions','parent_id'=>$link->id,'show_in_menu'=>0]);
 
            //Foods        
-            $link = Link::create(['title'=>'Foods','icon'=>'fas fa-hamburger','route'=>'#']);
-            Link::create(['title'=>'Manage Categories','icon'=>'icon-list','route'=>'Categories.index','parent_id'=>$link->id]);
+            $link = Link::create(['title'=>'Foods','icon'=>'fas fa-calendar','route'=>'#']);
             Link::create(['title'=>'Manage Foods','icon'=>'icon-list','route'=>'foods.index','parent_id'=>$link->id]);
             Link::create(['title'=>'Create New Foods','icon'=>'icon-plus','route'=>'foods.create','parent_id'=>$link->id]);
 
