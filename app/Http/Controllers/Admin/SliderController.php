@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
 use App\Http\Requests\slider\EditRequest;
+use Session;
 
 class SliderController extends Controller
 {

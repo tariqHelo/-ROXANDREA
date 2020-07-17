@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\food;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class EditRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class EditRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,10 +23,12 @@ class EditRequest extends FormRequest
      */
     public function rules()
     {
+      $id=$this->route('user');
+      
         return [
-            'title' => 'required',
-            'price' => 'required',
-            'details' => 'required',
+            'email'=>'required|unique:users,email,'.$id.',id',
+            'name'=>'required' ,
+            'password' => 'required',
         ];
     }
 }

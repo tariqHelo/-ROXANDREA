@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("title", "Manage Blogs")
+@section("title", "Manage Foods")
 
 
 @section("content")

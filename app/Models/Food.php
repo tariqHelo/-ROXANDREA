@@ -11,7 +11,12 @@ class Food extends Model
         'price',
         'image',
         'details',
-        'published'
+        'published',
+        'category_id'
     ];
+
+    public function category(){
+        return $this->belongsTo('App\Models\Category');
+    }
     
 }

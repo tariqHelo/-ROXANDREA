@@ -42,12 +42,16 @@
 
                                 <td width="20%">
                                     <form method="post" action="{{ route('users.destroy', $user->id) }}">
-                                        <a href="{{ route("users.show", $user->id) }}" class="btn btn-info btn-sm"><i class='fa fa-eye'></i></a>
-
-                                        <a href="{{ route("users.edit", $user->id) }}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-
-                                        <a href="{{ route("delete-user", $user->id) }}" onclick='return confirm("Are you sure delete?")' class="btn btn-warning btn-sm"><i class='fa fa-trash'></i></a>
-
+                                        <!--a href="{{ route("users.show", $user->id) }}" class="btn btn-info btn-xs"><i class='fa fa-eye'></i></a-->
+                                        @if(auth()->user()->links->where('route','permissions')->count()>0)
+                                        <a href="{{ route("permissions", $user->id) }}" class="btn btn-info btn-xs"><i class='fa fa-lock'></i></a>
+                                        @endif
+                                        @if(auth()->user()->links->where('route','users.edit')->count()>0)
+                                        <a href="{{ route("users.edit", $user->id) }}" class="btn btn-primary btn-xs"><i class='fa fa-edit'></i></a>
+                                        @endif
+                                        @if(auth()->user()->links->where('route','users.destroy')->count()>0)
+                                        <a href="{{ route("delete-user", $user->id) }}" onclick='return confirm("Are you sure delete?")' class="btn btn-warning btn-xs"><i class='fa fa-trash'></i></a>
+                                        @endif
 
                                         @csrf
                                         @method("DELETE")
