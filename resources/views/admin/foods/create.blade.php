@@ -13,7 +13,7 @@
                 <input  value='{{ old('title') }}' type="text" autofocus class="form-control {{ $errors->has('title')?"is-invalid":""}}"  id="title" name="title" placeholder="Enter Offers Title">
             </div>
         </div>
-            {{-- <div class="form-group has-success">
+            <div class="form-group has-success">
                 <label for="form_control_1">Category</label>
                     <select name="category_id" class="form-control" >
                         <option value="">Select Category</option>
@@ -21,7 +21,7 @@
                             <option {{old('category_id')== $category->id?"selected":""}} value='{{$category->id}}'>{{$category->title}}</option>
                         @endforeach
                 </select>
-            </div> --}}
+            </div> 
         <div class="col-sm-7">
             <div class="form-group">
                 <label for="Price">Price</label>

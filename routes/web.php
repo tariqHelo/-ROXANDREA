@@ -37,6 +37,9 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
     Route::resource("foods",'FoodController');
     Route::resource("menus",'MenuController');
 
+    Route::resource("category",'CateFoodsController');
+
+
     Route::get("/sliders/{id}/delete","SliderController@destroy")->name('delete-Slider');
 
 
@@ -55,13 +58,16 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
 
 
     Route::get("settings",'SettingController@setting')->name('settings');
-    Route::post("settings",'SettingController@postsetting')->name('post-settings');
+    Route::post(" settings",'SettingController@postsetting')->name('post-settings');
 
     
     Route::resource("contact_me",'ContactMeController');
 
     Route::get('/active_cat/{id}','CategoryController@active')->name('category.confirm');
     Route::get('/disactive_cat/{id}','CategoryController@pending')->name('category.pending');
+
+    Route::get('/active_cat/{id}','CateFoodsController@active')->name('categorys.confirm');
+    Route::get('/disactive_cat/{id}','CateFoodsController@pending')->name('categorys.pending');
 
     Route::get('/active_blog/{id}','BlogController@active')->name('blog.confirm');
     Route::get('/disactive_blog/{id}','BlogController@pending')->name('blog.pending');

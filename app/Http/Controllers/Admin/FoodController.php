@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use session;
+use App\Models\CateFoods;
 use App\Models\Food;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\food\EditRequest;
@@ -19,25 +19,28 @@ class FoodController extends Controller
      */
     public function index()
     {
-        
-        $foods = Food::whereRaw('true');
+        $foods=Food::orderBy('id','desc');
        
         $q=request()->get('q')?? "";
         $published=request()->get('published');
+        $category=request()->get("category");
 
-        if ($q) {
+        if($q){
             $foods->where('title','like',"%{$q}%");
         }
-        if ($published!=null) {
+        if($published!=null) {
             $foods->where('published',$published);
         }
-       
+        if($category){
+            $foods->where('category_id',$category);
+        }
+        $categories=CateFoods::orderBy('title')->get();
         $foods =$foods->paginate(10)->appends([
             "q"=>$q,
             "published"=>$published,
+            "category"=>$category
         ]);
-       
-      return  view('admin.foods.index')->withFoods($foods);
+      return view('admin.foods.index')->withFoods($foods)->withCategories($categories);
 
 
 }

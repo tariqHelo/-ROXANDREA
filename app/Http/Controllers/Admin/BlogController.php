@@ -40,7 +40,12 @@ class BlogController extends Controller
             $blogs->where('user_id',$user);
         }
         $categories=Category::orderBy('title')->get();
-        $blogs = $blogs->paginate(5)->appends(["q"=>$q,"published"=>$published,"category"=>$category,"user"=>$user]);
+        $blogs = $blogs->paginate(5)->appends([
+            "q"=>$q,
+            "published"=>$published,
+            "category"=>$category,
+            "user"=>$user
+            ]);
 
         return view('admin.blog.index', compact(['blogs','categories']));
     }
