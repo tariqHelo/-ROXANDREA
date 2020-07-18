@@ -53,7 +53,8 @@
             <button type="submit" class="btn btn-primary">Add New</button>
             <a class='btn btn-danger' href='{{ route("foods.index") }}'>Cancel</a>
         </div>
-
+  
+  
 
     </div>
 </form>
