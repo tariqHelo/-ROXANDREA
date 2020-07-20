@@ -24,6 +24,7 @@ Route::get('/', function () {
 });
 
 
+Route::get("/",'FrontEnd\HomeController@index')->name("home");
 
 
 
@@ -38,17 +39,24 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
     Route::resource("bookings",'BookingController');
     Route::resource("foods",'FoodController');
     Route::resource("menus",'MenuController');
-
     Route::resource("category",'CateFoodsController');
+    
+    Route::resource("about",'AboutController');
+    Route::resource("vision",'VisionController');
+    Route::resource("service",'ServiceController');
 
 
+
+    Route::get("/menus/{menu}/delete","MenuController@destroy")->name('menus.destroy');
     Route::get("/sliders/{id}/delete","SliderController@destroy")->name('delete-Slider');
 
 
     Route::get("/users/{id}/permissions","UserController@permissions")->name('permissions');
     Route::post("/users/{id}/permissions","UserController@postPermissions")->name('permissions-post');
 
-    
+    Route::get('/active_fd/{id}','CateFoodsController@active')->name('categorys.confirm');
+    Route::get('/disactive_fd/{id}','CateFoodsController@pending')->name('categorys.pending');
+
     Route::resource("users",'UserController');
     Route::get("/users/{id}/delete","UserController@destroy")->name('delete-user');
 
@@ -65,14 +73,14 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
     
     Route::resource("contact_me",'ContactMeController');
 
-    Route::get('/active_cat/{id}','CategoryController@active')->name('category.confirm');
-    Route::get('/disactive_cat/{id}','CategoryController@pending')->name('category.pending');
 
-    Route::get('/active_cat/{id}','CateFoodsController@active')->name('categorys.confirm');
-    Route::get('/disactive_cat/{id}','CateFoodsController@pending')->name('categorys.pending');
+ 
 
     Route::get('/active_blog/{id}','BlogController@active')->name('blog.confirm');
     Route::get('/disactive_blog/{id}','BlogController@pending')->name('blog.pending');
+
+    Route::get('/active_cat/{id}','CategoryController@active')->name('category.confirm');
+    Route::get('/disactive_cat/{id}','CategoryController@pending')->name('category.pending');
 
     Route::get("/change-password",'UserController@changePassword')->name("change-password");
     Route::put("/change-password",'UserController@postChangePassword')->name("post-change-password");

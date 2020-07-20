@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\This;
 
-class UserRequest extends FormRequest
+class MenuRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +24,12 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-      $id=$this->route('user');
-      
+
         return [
-            'email'=>'required|unique:users,email,'.$id.',id',
-            'name'=>'required' ,
-            'password' => 'required',
+            'title' => ['required' , 'unique:menus,title,'.$this->id.',id'] ,
+            'url' => ['required_if:is_route,0'] ,
+            'routes' => ['required_if:is_route,1'] ,
+            'parent_id' => ['required'] ,
         ];
     }
 }

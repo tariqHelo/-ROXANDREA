@@ -48,6 +48,12 @@ class LinksSeeder extends Seeder
             Link::create(['title'=>'Manage Foods','icon'=>'icon-list','route'=>'foods.index','parent_id'=>$link->id]);
             Link::create(['title'=>'Create New Foods','icon'=>'icon-plus','route'=>'foods.create','parent_id'=>$link->id]);
 
+
+          //Service        
+           $link = Link::create(['title'=>'Service','icon'=>'fas fa-calendar','route'=>'#']);
+           Link::create(['title'=>'Manage About','icon'=>'icon-list','route'=>'about.index','parent_id'=>$link->id]);
+           Link::create(['title'=>'Manage Vision','icon'=>'icon-list','route'=>'vision.index','parent_id'=>$link->id]);
+           Link::create(['title'=>'Manage Service','icon'=>'icon-plus','route'=>'service.index','parent_id'=>$link->id]);
         
     
     }

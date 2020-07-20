@@ -52,7 +52,8 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('admin.foods.create');
+        $categories=CateFoods::orderBy('title')->get();
+        return view('admin.foods.create')->withCategories($categories);
     }
 
     /**

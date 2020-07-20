@@ -10,7 +10,7 @@ use App\User;
 use App\Models\Link;
 use App\Models\UserLink;
 use App\Http\Requests\ChangePasswordRequest;
-
+use App\Notification;
 class UserController extends Controller
 {
     /**
@@ -50,9 +50,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+   
         $request['password'] = bcrypt($request['password']);
-        User::create($request->all());
-
+        $user = User::create($request->all());
+        if($user->is_active){
+          $user->notify(new CreateUser());
+        }
         session()->flash("msg", "s: Created Successfully");
         return redirect(route("users.index"));
     }

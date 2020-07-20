@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\MenuRequest;
+use App\Models\Menu;
 class MenuController extends Controller
 {
     /**
@@ -14,50 +15,38 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        return view('admin.menu.index')->withMenus($menus);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $menus = Menu::where('parent_id' , 0)->get();
+        return view('admin.menu.create')->withMenus($menus);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        //
-    }
+        $request['active'] = $request['active']??0;
+        if($request->is_route){
+            $request['url'] = $request['routes']; 
+        }
+        Menu::create($request->all());
+        session()->flash('msg' , 's: menu created successfully');
+        return redirect(route('menus.index'));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($menu)
     {
-        //
+        $menu = Menu::find($menu);
+        $menus = Menu::where('parent_id' , 0)->get();
+        if($menu == null){
+            session()->flash('msg' , 'w: Oops , cannot find your request');
+            return redirect(route('menus.index'));
+        }else{
+
+            return view('admin.menu.edit')->withMenu($menu)->withMenus($menus);
+        }
     }
 
     /**
@@ -67,19 +56,26 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Menu $menu , MenuRequest $request)
     {
-        //
+        if($request->is_route){
+            $request['url'] = $request['routes']; 
+        }
+        $request['active'] = $request->get('active')?1:0 ;
+       Menu::find($menu->$id)->update($request->all());
+       session()->flash('msg' , 's: menu updated successfully');
+       return redirect(route('menus.index'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($menu)
     {
-        //
+        $menu = Menu::find($menu);
+        if($menu == null){
+            session()->flash('msg' , 'w: sorry we have not menu');
+            return redirect(route('menus.index'));
+        }
+        Menu::destroy($menu);
+        session()->flash('msg' , 's: menu deleted successfully');
+            return redirect(route('menus.index'));
+
     }
 }

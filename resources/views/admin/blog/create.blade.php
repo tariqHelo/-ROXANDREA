@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 
-@section("title", "Create Blog")
+@section("title", "Create About")
 
 @section("css")
 <link href="{{ asset('metronic/assets/global/plugins/bootstrap-summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
@@ -9,7 +9,7 @@
 @section("content")
 <div class="portlet light ">
         <div class="portlet-body form">
-<form method="post" enctype="multipart/form-data" action="{{ route('blogs.store') }}" role="form">
+<form method="post" enctype="multipart/form-data" action="{{ route('about.store') }}" role="form">
 
     @csrf
                <div class="form-body">

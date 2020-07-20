@@ -17,8 +17,7 @@ class CreateVisionTable extends Migration
             $table->id();
             $table->string('icon');
             $table->string('title');
-            $table->boolean('published')->default(0);
-            $table->timestamps();
+           $table->timestamps();
         });
     }
 

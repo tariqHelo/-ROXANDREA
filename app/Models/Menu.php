@@ -26,7 +26,7 @@ class Menu extends Model
         'home'      => 'Home Page',    
         'blogs'     => 'Blogs',    
         'rooms'     => 'Rooms',    
-        'foods'    => 'Restaurant',    
+        'foods'     => 'Restaurant',    
         'contact'   => 'Contact Us',    
         'about'     => 'About us'
     ];

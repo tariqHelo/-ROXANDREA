@@ -101,7 +101,6 @@ class CateFoodsController extends Controller
         $category_active->update(['published'=>1]);
         session()->flash('msg','s: Category has been confirmed');
         return redirect()->back();
-
     }
     public function pending($id){
         $category_pending=CateFoods::find($id);
