@@ -8,7 +8,6 @@ class About extends Model
 {
     protected $fillable = [
         "title",
-        "video",
         "description" ,
         "image",
         "facebook",

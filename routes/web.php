@@ -23,16 +23,10 @@ Route::get('/', function () {
     return view('website.index');
 });
 
-
-Route::get("/",'FrontEnd\HomeController@index')->name("home");
-
-
-
-Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->group(function(){
+Route::prefix("admin")->namespace("Admin")->middleware(["auth",'permissions'])->group(function(){
 
     Route::resource("blogs",'BlogController');
     Route::resource("comments",'CommentController');
-    Route::resource("offers",'OfferController');
     Route::resource("rooms",'RoomController');
     Route::resource("categories",'CategoryController');
     Route::resource("sliders",'SliderController');
@@ -40,11 +34,13 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
     Route::resource("foods",'FoodController');
     Route::resource("menus",'MenuController');
     Route::resource("category",'CateFoodsController');
-    
+    Route::resource("users",'UserController');
+
     Route::resource("about",'AboutController');
     Route::resource("vision",'VisionController');
     Route::resource("service",'ServiceController');
 
+    Route::post("/about/{id}",'AboutController@update');
 
 
     Route::get("/menus/{menu}/delete","MenuController@destroy")->name('menus.destroy');
@@ -57,7 +53,6 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth","permissions"])->
     Route::get('/active_fd/{id}','CateFoodsController@active')->name('categorys.confirm');
     Route::get('/disactive_fd/{id}','CateFoodsController@pending')->name('categorys.pending');
 
-    Route::resource("users",'UserController');
     Route::get("/users/{id}/delete","UserController@destroy")->name('delete-user');
 
     Route::get("/comments/{id}/delete","CommentController@destroy")->name('delete-comment');

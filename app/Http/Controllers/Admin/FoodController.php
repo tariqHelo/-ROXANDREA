@@ -34,13 +34,12 @@ class FoodController extends Controller
         if($category){
             $foods->where('category_id',$category);
         }
-        $categories=CateFoods::orderBy('title')->get();
         $foods =$foods->paginate(10)->appends([
             "q"=>$q,
             "published"=>$published,
             "category"=>$category
         ]);
-      return view('admin.foods.index')->withFoods($foods)->withCategories($categories);
+      return view('admin.foods.index')->withFoods($foods);
 
 
 }
@@ -92,10 +91,15 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $foods=food::find($id);
-        return view('admin.foods.edit')->withFoods($foods);
+        if($foods==null){
+            session()->flash("msg", "The blog was not found");
+            return redirect(route("foods.index"));
+        }
+         $categories = CateFoods::all();
+         return view("admin.foods.edit", compact(['foods','categories']));
         
     }
 

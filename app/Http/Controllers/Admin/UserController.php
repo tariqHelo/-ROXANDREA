@@ -18,16 +18,34 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function status($id){
+         $user = User::find($id);
+
+         if($user){
+            $user->update(['is_active'=>!$user->is_active]);
+            session()->flash("msg", "s: Status updated Successfully");
+            return redirect(route("users.index"));
+
+         }
+     }
+
+
     public function index(Request $request)
     {
-        $q=$request->get("q")??"";
-
         $users=User::whereRaw('true');
 
+
+        $q=$request->get("q")??"";
+        $role = $request->get("role")??"";
+
+        if($role){
+            $users->whereRaw('id in (select model_id from model_has_roles where model_id=users.id
+            and role_id =?)',$role);
+        }
         if($q){
             $users->where("name","like","%$q%");
         }
-        $users=$users->paginate(3)->appends(["q"=>$q,]);
+        $users=$users->orderBy('id','desc')->paginate(3)->appends(["q"=>$q,]);
         return view("admin.user.index")->withUsers($users);
     }
 
@@ -51,11 +69,14 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
    
-        $request['password'] = bcrypt($request['password']);
+        $request['password']=bcrypt($request['password']);
         $user = User::create($request->all());
+        $user->assignRole('admin');
+
         if($user->is_active){
           $user->notify(new CreateUser());
         }
+
         session()->flash("msg", "s: Created Successfully");
         return redirect(route("users.index"));
     }
@@ -141,10 +162,10 @@ class UserController extends Controller
   public function postChangePassword(ChangePasswordRequest $request){
 
         $hasher = app('hashe');
-
         if($hasher->check($request->current_password , auth()->user()->password)){
 
             $user  = User::find(auth()->user()->id);
+            
             $user->update(['password'=>bcrypt($request->new_password)]);
 
             session()->flash("msg", "s:Password updated Successfully");

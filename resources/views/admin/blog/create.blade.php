@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 
-@section("title", "Create About")
+@section("title", "Create Blog")
 
 @section("css")
 <link href="{{ asset('metronic/assets/global/plugins/bootstrap-summernote/summernote.css')}}" rel="stylesheet" type="text/css" />

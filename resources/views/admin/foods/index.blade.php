@@ -41,7 +41,7 @@
                                                     <td> {{$food->title}} </td>
                                                     <td> {{$food->price}} </td>
                                                     <td> {{ $food->details }}</td>
-                                                    <td> <img src="{{asset("storage/".$food->image)}}" width="100"> </td>
+                                                    <td> <img src="{{asset("storage/".$food->image)}}"   width="100"> </td>
                                                     <td> <input {{$food->published?"checked":""}} disabled type="checkbox"> </td>
                                                     <td>
                                                         <div class="btn-group">

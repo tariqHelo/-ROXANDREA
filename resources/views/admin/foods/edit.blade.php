@@ -15,12 +15,12 @@
             </div>
         </div>
         
-            <div class="form-body">
+            <div class="col-sm-7">
                <div class="form-group has-success">
                 <label for="form_control_1">Category</label>
                 <select name="category_id" class="form-control input-lg" >
                     @foreach($categories as $category)
-                        <option {{$category->id == $blog->category_id?"selected":""}} value='{{$category->id}}'>{{$category->title}}</option>
+                        <option {{$category->id == $foods->category_id?"selected":""}} value='{{$category->id}}'>{{$category->title}}</option>
                     @endforeach
                 </select>
                </div>
