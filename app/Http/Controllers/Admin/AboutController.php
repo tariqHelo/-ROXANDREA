@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\About;
 use Illuminate\Http\Request;
-use App\Http\Requests\AboutEdit;
-use App\Http\Requests\AboutRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\about\EditRequest;
+use App\Http\Requests\about\CreateRequest;
 
 class AboutController extends Controller
 {
@@ -56,7 +56,7 @@ class AboutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AboutRequest $request)
+    public function store(CreateRequest $request)
     {
         if(!$request->published){
             $request['published']=0;
@@ -101,7 +101,7 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AboutEdit $request, $id)
+    public function update(EditRequest $request, $id)
     {
         if(!$request->published){
             $request['published']=0;

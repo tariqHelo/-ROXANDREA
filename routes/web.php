@@ -19,9 +19,31 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::get('/', function () {
-    return view('website.index');
-});
+
+Route::get("/",'FrontEnd\HomeController@index')->name("home");
+
+
+Route::get("/contact",'FrontEnd\HomeController@contact')->name("contact");
+Route::post("/contact",'FrontEnd\HomeController@postContact')->name("contactus");
+
+Route::get("/comment/create",'FrontEnd\CommentController@create')->name("comment_create");
+Route::post("/comment/{id}",'FrontEnd\CommentController@store')->name("comment_store");
+
+
+Route::get("/about",'FrontEnd\HomeController@about')->name("about");
+Route::get("/comment",'FrontEnd\HomeController@about')->name("about");
+
+Route::get("/foods",'FrontEnd\HomeController@foods')->name("food");
+
+Route::get("/blogs",'FrontEnd\BlogController@blogs')->name("blogs");
+Route::get("/blogs/{id}",'FrontEnd\BlogController@blog')->name("blog");
+
+Route::post("/comments/{id}",'FrontEnd\BlogController@storeComment')->name("add_comment");
+Route::get("/blogs/{id}/show",'FrontEnd\BlogController@blog')->name("blogshow");
+
+Route::get("/rooms",'FrontEnd\HomeController@rooms')->name("rooms");
+
+Route::post("/booking",'FrontEnd\BookingController@postCreate')->name("post-booking");
 
 Route::prefix("admin")->namespace("Admin")->middleware(["auth",'permissions'])->group(function(){
 
@@ -39,8 +61,10 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth",'permissions'])->
     Route::resource("about",'AboutController');
     Route::resource("vision",'VisionController');
     Route::resource("service",'ServiceController');
+    Route::get("service/{id}/delete",'ServiceController@destroy')->name('delete-services');
 
-    Route::post("/about/{id}",'AboutController@update');
+   // Route::get("/about/{id}/edit","AboutController@edit");
+    //Route::post("/about/{id}","AboutController@update");
 
 
     Route::get("/menus/{menu}/delete","MenuController@destroy")->name('menus.destroy');

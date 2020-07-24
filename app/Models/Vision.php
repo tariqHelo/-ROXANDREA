@@ -9,6 +9,5 @@ class Vision extends Model
     protected $fillable = [
         "title",
         "icon",
-        "published",   
-   ];
+       ];
 }

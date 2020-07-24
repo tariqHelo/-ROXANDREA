@@ -69,9 +69,6 @@ class BlogController extends Controller
      */
     public function store(CreateRequest $request)
     {
-
-
-
         $request['user_id'] = 1;
 
         if(!$request->published){

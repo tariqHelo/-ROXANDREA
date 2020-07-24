@@ -10,7 +10,6 @@
 <div class="portlet light ">
         <div class="portlet-body form">
 <form method="post" enctype="multipart/form-data" action="{{ route('about.update' , $abouts->id) }}" role="form">
-
     @csrf
     @method('PUT')
         <div class="form-body">
@@ -58,14 +57,6 @@
             <label for="image">Image</label>
             <div class="custom-file">
                 <input type="file" name="image" value="{{ $abouts->image }}" class="custom-file-input" id="image">
-            </div>
-        </div>
-    </div>
-     <div class="form-group row">
-        <div class='col-sm-6'>
-            <label for="video">video</label>
-            <div class="custom-file">
-                <input type="file" name="video" value="{{ $abouts->video }}" class="custom-file-input" id="video">
             </div>
         </div>
     </div>

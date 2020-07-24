@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
-
+namespace App\Http\Requests\about;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AboutRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +25,10 @@ class AboutRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required',
             'facebook' => 'required',
             'twitter' => 'required',
-            'instagram' => 'required',
-		];	
+            'instagram' => 'required',       
+        ];
     }
+
 }

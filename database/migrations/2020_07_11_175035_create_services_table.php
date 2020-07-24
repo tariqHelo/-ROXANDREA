@@ -17,7 +17,6 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('image');
             $table->string('title');
-            $table->boolean('published')->default(0);
             $table->timestamps();
         });
     }

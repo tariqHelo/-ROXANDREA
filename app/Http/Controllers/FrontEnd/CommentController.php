@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentsRequest;
 
 class CommentController extends Controller
 {
@@ -24,7 +26,8 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view("frontend.blogs.blogs");
+
     }
 
     /**
@@ -33,9 +36,16 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentsRequest $request , $id)
     {
-        //
+        $blog = Blog::find($id);
+        $comment = $request->all();
+        $comment['blog_id']=$blog->id;
+        Comment::create($comment);
+        session()->flash('msg' , 's: comment created successfully');
+        return redirect()->back();
+
+        
     }
 
     /**

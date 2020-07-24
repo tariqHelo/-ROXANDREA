@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ServiceController extends Controller
 {
@@ -14,7 +16,24 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::orderBy('id');
+
+        $q=request()->get("q")??"";
+        $published=request()->get("published");
+
+        if($q){
+            $services->where('title','like',"%{$q}%");
+        }
+        if($published!=null){
+            $services->where('published',$published);
+        }
+
+        $services = $services->paginate(5)->appends([
+            "q"=>$q,
+            "published"=>$published,
+            ]);
+
+            return view('admin.service.index')->withServices($services);
     }
 
     /**
@@ -24,7 +43,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.service.create');
     }
 
     /**
@@ -35,7 +54,13 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!$request->published){
+            $request['published']=0;
+        }
+
+        Service::create($request->all());
+        Session::flash("msg","About created successfully");
+        return redirect(route('service.index'));
     }
 
     /**
@@ -46,7 +71,7 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +82,12 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $services = Service::find($id);
+        if($services==null){
+            session()->flash("msg", "The service was not found");
+            return redirect(route("service.index"));
+        }
+        return view('admin.service.edit')->withServices($services);
     }
 
     /**
@@ -69,7 +99,16 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$request->published){
+            $request['published']=0;
+        }
+        if($request->imageFile){
+            $image = basename($request->imageFile->store("public"));
+            $request['image'] = $image;
+        }
+        Service::find($id)->update($request->all());
+        session()->flash("msg", "The About was updated");
+        return redirect(route("service.index"));
     }
 
     /**
@@ -80,6 +119,13 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $services = Service::find($id);
+        if(!$services){
+            Session()->flash('msg','blogs not found');
+            return redirect(route('service.index'));
+        }
+        Service::destroy($id);
+        session()->flash("msg", " blogs Deleted Successfully");
+        return redirect(route('service.index'));
     }
 }

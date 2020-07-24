@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Vision;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class VisionController extends Controller
 {
@@ -14,7 +16,24 @@ class VisionController extends Controller
      */
     public function index()
     {
-        //
+        $visions = Vision::orderBy('id');
+
+        $q=request()->get("q")??"";
+        $published=request()->get("published");
+
+        if($q){
+            $visions->where('title','like',"%{$q}%");
+        }
+        if($published!=null){
+            $visions->where('published',$published);
+        }
+
+        $visions = $visions->paginate(5)->appends([
+            "q"=>$q,
+            "published"=>$published,
+            ]);
+    
+            return view('admin.vision.index')->withVisions($visions);
     }
 
     /**
@@ -24,7 +43,8 @@ class VisionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.vision.create');
+
     }
 
     /**
@@ -35,7 +55,12 @@ class VisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!$request->published){
+            $request['published']=0;
+        }
+        Vision::create($request->all());
+        Session::flash("msg","vision created successfully");
+        return redirect(route('vision.index'));
     }
 
     /**
@@ -46,7 +71,7 @@ class VisionController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -57,7 +82,12 @@ class VisionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $visions = Vision::find($id);
+        if(!$visions){
+           session()->flash("msg", "The vision was not found");
+           return redirect(route("vision.index"));
+        }
+        return view("admin.vision.edit")->withVisions($visions);
     }
 
     /**
@@ -69,7 +99,12 @@ class VisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$request->published){
+            $request['published']=0;
+        }
+        Vision::find($id)->update($request->all());
+        session()->flash("msg", "The vision was updated");
+        return redirect(route("vision.index"));
     }
 
     /**
@@ -80,6 +115,13 @@ class VisionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $visions = Vision::find($id);
+        if(!$visions){  
+            Session()->flash('msg','vision not found');
+            return redirect(route('vision.index'));
+        }
+        Vision::destroy($id);
+        session()->flash("msg", " vision Deleted Successfully");
+        return redirect(route("vision.index"));
     }
 }

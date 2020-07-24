@@ -62,7 +62,7 @@ class MenuController extends Controller
             $request['url'] = $request['routes']; 
         }
         $request['active'] = $request->get('active')?1:0 ;
-       Menu::find($menu->$id)->update($request->all());
+       Menu::find($menu->id)->update($request->all());
        session()->flash('msg' , 's: menu updated successfully');
        return redirect(route('menus.index'));
     }
