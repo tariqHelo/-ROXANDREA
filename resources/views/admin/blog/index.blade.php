@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("title", "Manage Blogs")
+@section("title", "Manage Blogs")s
 @section("content")
 <div class="portlet light ">
 

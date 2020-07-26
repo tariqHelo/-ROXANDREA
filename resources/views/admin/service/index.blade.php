@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("title", "Manage Menu")
+@section("title", "Manage Service")
 
 
 @section("content")
@@ -26,8 +26,7 @@
                 <form method="post" action="{{ route('service.destroy', $service->id) }}">
 
                     <a href="{{ route("service.edit", $service->id) }}" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
-                    <a href="{{ route("delete-services", $service->id) }}" onclick='return confirm("Are you sure delete?")' class="btn btn-warning btn-sm"><i class='fa fa-trash'></i></a>
-
+                    <button onclick='return confirm("Are you sure ?")' type="submit" class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></button>
                     @csrf
                     @method("DELETE")
 

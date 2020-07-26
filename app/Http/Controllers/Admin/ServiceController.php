@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRequest;
 use Illuminate\Support\Facades\Session;
 
 class ServiceController extends Controller
@@ -52,12 +53,13 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
         if(!$request->published){
             $request['published']=0;
         }
-
+        $image = basename($request->imageFile->store("public"));
+        $request['image'] = $image;
         Service::create($request->all());
         Session::flash("msg","About created successfully");
         return redirect(route('service.index'));
@@ -97,7 +99,7 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceRequest $request, $id)
     {
         if(!$request->published){
             $request['published']=0;

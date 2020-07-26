@@ -27,6 +27,7 @@
                 </div>
               </div>
              @endforeach
+             
 
               {{-- <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
