@@ -20,7 +20,7 @@ Auth::routes();
 
 
 
-Route::get("/",'FrontEnd\HomeController@index')->name("home");
+Route::get("/",'FrontEnd\HomeController@index')->name("home-view");
 
 
 Route::get("/contact",'FrontEnd\HomeController@contact')->name("contact");
@@ -31,7 +31,7 @@ Route::post("/comment/{id}",'FrontEnd\CommentController@store')->name("comment_s
 
 
 Route::get("/about",'FrontEnd\HomeController@about')->name("about");
-Route::get("/comment",'FrontEnd\HomeController@about')->name("about");
+Route::get("/comment",'FrontEnd\HomeController@about');
 
 Route::get("/foods",'FrontEnd\HomeController@foods')->name("food");
 
@@ -44,6 +44,9 @@ Route::get("/blogs/{id}/show",'FrontEnd\BlogController@blog')->name("blogshow");
 Route::get("/rooms",'FrontEnd\HomeController@rooms')->name("rooms");
 
 Route::post("/booking",'FrontEnd\BookingController@postCreate')->name("post-booking");
+
+
+
 
 Route::prefix("admin")->namespace("Admin")->middleware(["auth",'permissions'])->group(function(){
 

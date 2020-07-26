@@ -68,13 +68,12 @@
 			      					<div class="form-field">
 			        					<div class="select-wrap">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control">
-			                    	<option value="">Suite</option>
-			                      <option value="">Family Room</option>
-			                      <option value="">Deluxe Room</option>
-			                      <option value="">Classic Room</option>
-			                      <option value="">Superior Room</option>
-			                      <option value="">Luxury Room</option>
+			                    <select id="room_id" class="form-control">
+										<option value="">Suite</option>
+										@php $rooms = \App\Models\Room::get() @endphp
+								     	@foreach($rooms as $room)
+								        	<option value='{{$room->id}}'>{{$room->title}}</option>
+									     @endforeach
 			                    </select>
 			                  </div>
 				              </div>
@@ -89,7 +88,7 @@
 			        					<div class="select-wrap">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
 			                    <select name="" id="" class="form-control">
-			                    	<option value="">1 Adult</option>
+			                      <option value="">1 Adult</option>
 			                      <option value="">2 Adult</option>
 			                      <option value="">3 Adult</option>
 			                      <option value="">4 Adult</option>
@@ -104,11 +103,12 @@
 	        			<div class="col-md d-flex">
 	        				<div class="form-group d-flex align-self-stretch">
 			              <a href="#" class="btn btn-black py-5 py-md-3 px-4 align-self-stretch d-block"><span>Check Availability <small>Best Price Guaranteed!</small></span></a>
-			            </div>
+					    </div>
 	        			</div>
 	        		</div>
 	        	</form>
 	    		</div>
     		</div>
+		 </form>
     	</div>
     </section>

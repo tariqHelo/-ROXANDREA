@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
             'summary' => 'required',
             'imageFile' => 'required|image',
             'details' => 'required',
-           'category_id' => 'required',
+            'category_id' => 'required',
        
         ];
     }
