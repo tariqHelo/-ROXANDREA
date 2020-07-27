@@ -17,11 +17,15 @@ class CreateSlidersTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subtitle');
-            $table->string('button_text')->nullable()->change();
-            $table->string('url')->nullable()->change();
+            $table->string('url');
+            $table->string('button_text');
             $table->string('image');
             $table->boolean('published')->default(0);
-            
+            $table->integer('room_id');
+            $table->string('name');
+            $table->date('check_in');
+            $table->date('check_out');
+            $table->integer('adults');
             $table->timestamps();
         });
     }

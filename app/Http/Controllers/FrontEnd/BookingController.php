@@ -14,7 +14,7 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function postCreate(BookingRequest $request){
-
+        
         Booking::create($request->all());
 
         return redirect()->back();
