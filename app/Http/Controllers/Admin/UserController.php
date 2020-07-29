@@ -161,7 +161,7 @@ class UserController extends Controller
 
   public function postChangePassword(ChangePasswordRequest $request){
 
-        $hasher = app('hashe');
+        $hasher = app('hash');
         if($hasher->check($request->current_password , auth()->user()->password)){
 
             $user  = User::find(auth()->user()->id);

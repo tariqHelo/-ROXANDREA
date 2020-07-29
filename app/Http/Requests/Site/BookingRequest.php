@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Contact;
+namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class BookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,14 @@ class CreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required'] ,
-            'email' => ['required'] ,
-            'subject' => ['required'] ,
-            'message' => ['required'] ,
-        ];
+     
+		return [
+                'check_in'=> 'required',
+                'check_out'=> 'required',
+                'room_id'=> 'required',
+                 //  'adults'=> 'required',
+
+               
+	     	];	
     }
 }

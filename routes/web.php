@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::post("/booking",'FrontEnd\BookingController@postCreate')->name("post-booking");
 
 
 Route::get("/",'FrontEnd\HomeController@index')->name("home-view");
@@ -43,7 +44,6 @@ Route::get("/blogs/{id}/show",'FrontEnd\BlogController@blog')->name("blogshow");
 
 Route::get("/rooms",'FrontEnd\HomeController@rooms')->name("rooms");
 
-Route::post("/booking",'FrontEnd\BookingController@postCreate')->name("post-booking");
 
 
 

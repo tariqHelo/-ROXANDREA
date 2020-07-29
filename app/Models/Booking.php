@@ -8,10 +8,9 @@ class Booking extends Model
 {
     protected $fillable=[
         "room_id",
-        "name",
         "check_in", 
         "check_out", 
-        "adults",
+       "adults",
     ];
 
     public function room(){

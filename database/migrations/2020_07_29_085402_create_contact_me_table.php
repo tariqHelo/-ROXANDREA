@@ -14,12 +14,14 @@ class CreateContactMeTable extends Migration
     public function up()
     {
         Schema::create('contact_me', function (Blueprint $table) {
-             $table->id();
-             $table->text('message');
-             $table->string('name');
-             $table->string('subject');
-             $table->string('title');
-             $table->timestamps();
+            $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('subject');
+            $table->text('message');
+            
+           
+            $table->timestamps();
         });
     }
 
