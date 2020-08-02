@@ -23,9 +23,8 @@ Route::post("/booking",'FrontEnd\BookingController@postCreate')->name("post-book
 
 Route::get("/",'FrontEnd\HomeController@index')->name("home-view");
 
-
+Route::post("/contactus",'FrontEnd\HomeController@postContact')->name("contactus");
 Route::get("/contact",'FrontEnd\HomeController@contact')->name("contact");
-Route::post("/contact",'FrontEnd\HomeController@postContact')->name("contactus");
 
 Route::get("/comment/create",'FrontEnd\CommentController@create')->name("comment_create");
 Route::post("/comment/{id}",'FrontEnd\CommentController@store')->name("comment_store");

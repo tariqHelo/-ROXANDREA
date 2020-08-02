@@ -39,11 +39,6 @@
 	      </div> --}}
 	    </section>
 	  </div>
-
-
-  
-  
-  
     <section class="ftco-booking ftco-section ftco-no-pt ftco-no-pb">
     	<div class="container">
 
