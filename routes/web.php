@@ -65,9 +65,6 @@ Route::prefix("admin")->namespace("Admin")->middleware(["auth",'permissions'])->
     Route::resource("service",'ServiceController');
     Route::get("service/{id}/delete",'ServiceController@destroy')->name('delete-services');
 
-   // Route::get("/about/{id}/edit","AboutController@edit");
-    //Route::post("/about/{id}","AboutController@update");
-
 
     Route::get("/menus/{menu}/delete","MenuController@destroy")->name('menus.destroy');
     Route::get("/sliders/{id}/delete","SliderController@destroy")->name('delete-Slider');

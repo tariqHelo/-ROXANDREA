@@ -1,5 +1,3 @@
-
-
 @extends("frontend.layout")
     @section("content")
     @include("site.header")

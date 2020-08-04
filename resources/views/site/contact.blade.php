@@ -28,7 +28,7 @@
 	          </div>
           </div>
         </div>
-        <div class="row block-9">
+        {{-- <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
             <form action="{{route('contactus')}}" method="post" class="bg-white p-5 contact-form" role="form">
                @csrf 
@@ -46,15 +46,14 @@
                 <textarea name="message" type="text"  id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
               </div>
               <div class="form-group">
-                <button type="submit"  class="btn btn-primary py-3 px-5"></button>
+                <a type="submit" value="Send Message" class="btn btn-primary py-3 px-5"></a>
               </div>
             </form>
-          
           </div>
 
           <div class="col-md-6 d-flex">
           	<div id="map" class="bg-white"></div>
           </div>
-        </div>
+        </div> --}}
       </div>
     </section>

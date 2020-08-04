@@ -1,9 +1,8 @@
 <?php 
  use App\Models\Setting;
-$settings = Setting::first();
+$settings = Setting::first()
 ?>
-
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
+ <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">

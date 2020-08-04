@@ -28,7 +28,6 @@ class HomeController extends Controller
     }
 
     public function postContact(CreateRequest $request){
-        dd($request->all());
         ContactMe::create($request->all());
         session()->flash("msg","s: Thank you for your contact");
         return redirect(route("contact"));
