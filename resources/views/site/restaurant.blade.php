@@ -10,7 +10,6 @@
 		<div class="row">
 		    @php $foods = \App\Models\Food::get() @endphp
                @foreach($foods as $food)
-				   
 					<div class="col-md-6">
 						<div class="pricing-entry d-flex ftco-animate">
 							<div class="img order-md-last" style="background-image: url('{{asset('storage/'.$food->image)}}');"></div>

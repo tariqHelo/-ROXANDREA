@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get("/rooms",'FrontEnd\HomeController@rooms')->name("rooms");
+Route::get("/rooms/{id}",'FrontEnd\HomeController@showrooms')->name("show-room");
+
 
 Route::post("/booking",'FrontEnd\BookingController@postCreate')->name("post-booking");
 
@@ -41,7 +44,6 @@ Route::get("/blogs/{id}",'FrontEnd\BlogController@blog')->name("blog");
 Route::post("/comments/{id}",'FrontEnd\BlogController@storeComment')->name("add_comment");
 Route::get("/blogs/{id}/show",'FrontEnd\BlogController@blog')->name("blogshow");
 
-Route::get("/rooms",'FrontEnd\HomeController@rooms')->name("rooms");
 
 
 

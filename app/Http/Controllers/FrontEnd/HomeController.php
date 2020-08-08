@@ -44,6 +44,11 @@ class HomeController extends Controller
         return view('frontend.rooms.rooms')->withRooms($rooms);
     }
 
+    public function showrooms(){
+        $rooms=Room::where('published',1)->orderBy("id","desc")->paginate(4);
+        return view('frontend.rooms.single-room')->withRooms($rooms);
+    }
+
 
     
 }

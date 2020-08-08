@@ -183,29 +183,33 @@
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="#">Properties <span>(12)</span></a></li>
+                {{-- <li><a href="#">Properties <span>(12)</span></a></li>
                 <li><a href="#">Home <span>(22)</span></a></li>
                 <li><a href="#">House <span>(37)</span></a></li>
                 <li><a href="#">Villa <span>(42)</span></a></li>
                 <li><a href="#">Apartment <span>(14)</span></a></li>
-                <li><a href="#">Condominium <span>(140)</span></a></li>
+                <li><a href="#">Condominium <span>(140)</span></a></li> --}}
               </div>
             </div>
 
             <div class="sidebar-box ftco-animate">
               <h3>Recent Blog</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+
+            @php $blogs = \App\Models\Blog::get() @endphp
+            @foreach ($blogs as $blog)
+             <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url('{{ asset("storage/".$blog->image)}}');"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                  <h3 class="heading"><a href="{{ route('blog' ,$blog->id) }}">{{ $blog->details }}</a></h3>
                   <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July, 04 2019</a></div>
+                    <div><a href="#"><span class="icon-calendar"></span>{{ date('M',strtotime($blog->created_at))}}, {{ date('Y',strtotime($blog->created_at))}}</a></div>
                     <div><a href="#"><span class="icon-person"></span> Admin</a></div>
                     <div><a href="#"><span class="icon-chat"></span> 19</a></div>
                   </div>
                 </div>
               </div>
-              <div class="block-21 mb-4 d-flex">
+            @endforeach
+              {{-- <div class="block-21 mb-4 d-flex">
                 <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
@@ -226,7 +230,7 @@
                     <div><a href="#"><span class="icon-chat"></span> 19</a></div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
 
             <div class="sidebar-box ftco-animate">
@@ -252,5 +256,4 @@
         </div>
       </div>
     </section> <!-- .section -->
-
 @endsection

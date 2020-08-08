@@ -55,15 +55,15 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
         $category = Category::where("published",1)->get();
-        $comments = Comment::where('blog_id' , $id)('published','=','1')->get();
+       // $comments = Comment::where('blog_id' , $id)('published','=','1')->get();
         $next_post=Blog::where('id' ,'>', $blog->id)->where('published','1')->min('id');
         $prev_post=Blog::where('id' ,'<', $blog->id)->where('published','1')->max('id');
         $blogs=Blog::where('published','=','1')->orderBy('id','desc')->where('id','!=',$id)->limit(3)->get();
-        return view('frontend.blogs.blogs')
+        return view('frontend.blogs.single-blog')
         ->with('blog',$blog)
             ->with('category',$category)
             ->with('blogs',$blogs)
-            ->with('comments',$comments)
+        //    ->with('comments',$comments)
             ->with('next_post',Blog::find($next_post))
             ->with('prev_post',Blog::find($prev_post));
         
